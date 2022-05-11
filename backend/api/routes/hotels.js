@@ -1,9 +1,9 @@
 import express from 'express';
-import { createHotel } from '../controllers/hotelController';
+import { getAllHotel, getHotel, createHotel, updateHotel, deleteHotel } from '../controllers/hotelController';
 
 const router = express.Router();
 
-router.route('/').post(createHotel);
-
+router.route('/').get(getAllHotel).post(createHotel);
+router.route('/:id').get(getHotel).patch(updateHotel).delete(deleteHotel);
 
 export default router;
