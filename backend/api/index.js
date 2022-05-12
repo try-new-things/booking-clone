@@ -3,6 +3,7 @@ import dotenv from 'dotenv';
 
 import createDB from './db/connect';
 import hotels from './routes/hotels';
+import auth from './routes/auth';
 
 dotenv.config();
 
@@ -12,7 +13,7 @@ app.use(express.json());
 
 // router
 app.use('/api/v1/hotels', hotels);
-
+app.use('/api/v1/auth', auth);
 
 const port = process.env.PORT || 3000;
 
