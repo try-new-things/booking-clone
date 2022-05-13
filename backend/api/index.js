@@ -1,5 +1,6 @@
 import express from 'express';
 import dotenv from 'dotenv';
+import cookieParser from 'cookie-parser';
 
 import createDB from './db/connect';
 import hotels from './routes/hotels';
@@ -9,6 +10,8 @@ dotenv.config();
 
 const app = express();
 
+// midleware
+app.use(cookieParser());
 app.use(express.json());
 
 // router
