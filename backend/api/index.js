@@ -5,6 +5,7 @@ import cookieParser from 'cookie-parser';
 import createDB from './db/connect';
 import hotels from './routes/hotels';
 import auth from './routes/auth';
+import users from './routes/users';
 
 dotenv.config();
 
@@ -17,6 +18,7 @@ app.use(express.json());
 // router
 app.use('/api/v1/hotels', hotels);
 app.use('/api/v1/auth', auth);
+app.use('/api/v1/users', users);
 
 const port = process.env.PORT || 3000;
 
