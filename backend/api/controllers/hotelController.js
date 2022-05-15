@@ -7,7 +7,7 @@ const getAllHotel = asyncWrapper(async (req, res) => {
   res.status(200).json({ hotels });
 });
 
-const getHotel = asyncWrapper(async (req, res) => {
+const getHotel = asyncWrapper(async (req, res, next) => {
   const { id : hotelID } = req.params;
   const hotel = await Hotel.findOne({ _id: hotelID });
 
