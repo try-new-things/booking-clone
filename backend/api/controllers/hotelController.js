@@ -48,10 +48,20 @@ const deleteHotel = asyncWrapper(async (req, res) => {
   res.status(201).json({ hotel });
 });
 
+const countByCity = asyncWrapper(async (req, res, next) => {
+  const cities = req.query.cities.splite(",");
+  const list = await Promise.all(cities.map(city => {
+    return Hotel.countDocuments({ city: city });
+  }));
+  res.status(200).json({ list });
+
+});
+
 export {
   getAllHotel,
   getHotel,
   createHotel,
   updateHotel,
   deleteHotel,
+  countByCity,
 }
