@@ -1,6 +1,7 @@
 import express from 'express';
 import dotenv from 'dotenv';
 import cookieParser from 'cookie-parser';
+import cors from 'cors';
 
 import createDB from './db/connect';
 import hotels from './routes/hotels';
@@ -13,6 +14,7 @@ dotenv.config();
 const app = express();
 
 // midleware
+app.use(cors());
 app.use(cookieParser());
 app.use(express.json());
 
