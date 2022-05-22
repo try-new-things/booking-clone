@@ -48,6 +48,12 @@ const deleteHotel = asyncWrapper(async (req, res) => {
   res.status(201).json({ hotel });
 });
 
+const getHotels = asyncWrapper(async (req, res, next) => {
+  const { min, max, ...other } = req.query;
+  const hotels = await Hotel.find({ ...other, cheapestPrice: { $gt: min | 1, $lt: max || 999 } }).limit(req.query.limit);
+  res.status(200).json({ hotels });
+});
+
 const countByCity = asyncWrapper(async (req, res, next) => {
   const cities = req.query.cities.splite(",");
   const list = await Promise.all(cities.map(city => {
