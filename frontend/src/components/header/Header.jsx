@@ -3,12 +3,13 @@ import { faBed, faCar, faPerson, faPlane, faTaxi } from '@fortawesome/free-solid
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import './header.css';
 import { DateRange } from 'react-date-range';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import 'react-date-range/dist/styles.css';
 import 'react-date-range/dist/theme/default.css';
 import { format } from 'date-fns';
 import { useNavigate } from 'react-router-dom';
 import { SearchContext } from '../../context/SearchContext';
+import { AuthContext } from '../../context/AuthContext';
 
 const Header = ({ type }) => {
   const [destination, setDestination] = useState("");
@@ -28,6 +29,7 @@ const Header = ({ type }) => {
   });
 
   const navigate = useNavigate();
+  const { user } = useContext(AuthContext);
 
   const handleOption = (name, operation) => {
     setOptions(prev => {return {
@@ -73,7 +75,7 @@ const Header = ({ type }) => {
             <p className="headerDesc">
               알뜰하게 여행을 떠날 수 있는 기회! Booking.com 계정을 무료로 만들고 10%이상 할인 혜택을 즉시 누려보세요
             </p>
-            <button className="headerBtn">로그인 / 회원가입</button>
+            {!user && <button className="headerBtn">로그인 / 회원가입</button>}
             <div className="headerSearch">
               <div className="headerSearchItem">
                 <FontAwesomeIcon icon={faBed} className="headerIcon" />
